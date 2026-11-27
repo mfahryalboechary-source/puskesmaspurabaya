@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "web_puskesmas_purabaya/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "web_puskesmas_purabaya/wsgi.py"
+    }
+  ]
+}
