@@ -12,17 +12,28 @@ class InformasiUpdateAdmin(admin.ModelAdmin):
 
 @admin.register(JadwalPoli)
 class JadwalPoliAdmin(admin.ModelAdmin):
-    list_display = ('urutan', 'nama_poli', 'klaster', 'hari_layanan', 'jam_layanan', 'nama_dokter', 'status')
+    list_display = (
+        'urutan',
+        'nama_poli',
+        'klaster',
+        'hari_layanan',
+        'jam_layanan',
+        'nama_dokter',
+        'status',
+    )
+    list_display_links = ('urutan',)
     list_filter = ('klaster', 'status')
     search_fields = ('nama_poli', 'nama_dokter')
-    list_editable = ('jam_layanan', 'nama_dokter', 'status')
+    list_editable = ('nama_poli', 'klaster', 'hari_layanan', 'jam_layanan', 'nama_dokter', 'status')
 
 
 @admin.register(JadwalPosyanduDesa)
 class JadwalPosyanduDesaAdmin(admin.ModelAdmin):
     list_display = ('nama_desa', 'nama_posyandu', 'jadwal_minggu', 'jumlah_kader', 'bidan_desa')
+    list_display_links = ('nama_desa',)
     list_filter = ('nama_desa',)
     search_fields = ('nama_desa', 'nama_posyandu', 'bidan_desa')
+    list_editable = ('nama_posyandu', 'jadwal_minggu', 'jumlah_kader', 'bidan_desa')
 
 
 @admin.register(SurveiPengaduan)
