@@ -14,18 +14,20 @@ BOBOT_PENILAIAN = {
 
 
 def hitung_ikm_otomatis():
-    # Baseline awal (248 responden dengan skor 89,45 -> rata-rata 3,578 dari skala 4)
-    baseline_responden = 248
-    baseline_total_poin = baseline_responden * 3.578
-
     semua_survei = SurveiPengaduan.objects.all()
-    total_poin_baru = sum(BOBOT_PENILAIAN.get(s.penilaian, 3) for s in semua_survei)
-    total_responden = baseline_responden + semua_survei.count()
+    total_responden = semua_survei.count()
 
-    rata_rata_skala_4 = (baseline_total_poin + total_poin_baru) / total_responden
+    if total_responden == 0:
+        return {
+            'total_responden': 0,
+            'nilai_ikm_str': '0,00',
+            'kategori_mutu': 'Kategori D - Belum Ada Data',
+            'predikat_singkat': 'Belum Ada Data',
+        }
+
+    total_poin = sum(BOBOT_PENILAIAN.get(s.penilaian, 3) for s in semua_survei)
+    rata_rata_skala_4 = total_poin / total_responden
     nilai_ikm = round((rata_rata_skala_4 / 4) * 100, 2)
-
-    # Format koma ala Indonesia (misal: 89,45)
     nilai_ikm_str = f"{nilai_ikm:.2f}".replace('.', ',')
 
     if nilai_ikm >= 88.31:
