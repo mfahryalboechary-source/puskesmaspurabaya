@@ -30,6 +30,8 @@ class JadwalPoli(models.Model):
         ('Klaster 1', 'Klaster 1'),
         ('Klaster 2', 'Klaster 2'),
         ('Klaster 3', 'Klaster 3'),
+        ('Klaster 4', 'Klaster 4'),
+        ('Lintas Klaster', 'Lintas Klaster'),
     ]
 
     nama_poli = models.CharField(max_length=120)
