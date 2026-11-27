@@ -1,0 +1,561 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UPTD Puskesmas Purabaya - Dinas Kesehatan Kabupaten Sukabumi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <!-- ICON INSTAGRAM DAN FACEBOOK -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div>UGD 24 Jam | Jl. Raya Purabaya Km. 39, Kab. Sukabumi</div>
+
+      <div class="sosmed-links">
+        <a href="https://www.instagram.com/pkmpurabaya/" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+          @puskesmaspurabaya
+        </a>
+
+        <a href="https://www.facebook.com/puskesmas.purabaya?locale=id_ID" target="_blank">
+          <i class="fa-brands fa-facebook"></i>
+          UPTD Puskesmas Purabaya
+        </a>
+
+        <a href="/admin/">
+          <i class="fa-solid fa-user-shield"></i>
+          Login Admin
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Navigasi Multi-Level -->
+  <header class="header-main">
+    <div class="container header-inner">
+      <div class="brand-wrap" onclick="showPage('beranda')">
+        <img class="brand-logo" src="/static/img/logo-purabaya.png" alt="Logo Puskesmas Purabaya">
+        <div class="brand-text">
+          <h1>UPTD Puskesmas Purabaya</h1>
+          <div class="sub-dinkes">Dinas Kesehatan Kabupaten Sukabumi</div>
+          <div class="header-ticker-box"><span id="headerTicker">Melayani Pasien Dengan SOMEAH</span></div>
+        </div>
+      </div>
+
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <button type="button" class="nav-link active" data-page="beranda" onclick="showPage('beranda')">Beranda</button>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-page="profil" onclick="showPage('profil', 'visimisi')">Profil Puskesmas ▾</button>
+          <div class="dropdown-menu">
+            <button type="button" class="dropdown-item" onclick="showPage('profil', 'visimisi')">Visi, Misi &amp; Tata Nilai (PRIMA)</button>
+            <button type="button" class="dropdown-item" onclick="showPage('profil', 'ilp')">Struktur Organisasi Klaster ILP</button>
+            <button type="button" class="dropdown-item" onclick="showPage('profil', 'wilayah')">Wilayah Kerja 7 Desa</button>
+            <button type="button" class="dropdown-item" onclick="showPage('profil', 'maklumat')">Maklumat Pelayanan</button>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-page="layanan" onclick="showPage('layanan', 'klaster')">Layanan Kesehatan ▾</button>
+          <div class="dropdown-menu">
+            <button type="button" class="dropdown-item" onclick="showPage('layanan', 'klaster')">Klaster 1 - 4 Integrasi Layanan Primer</button>
+            <button type="button" class="dropdown-item" onclick="showPage('layanan', 'ugd')">UGD 24 Jam &amp; Persalinan PONED</button>
+            <button type="button" class="dropdown-item" onclick="showPage('layanan', 'jadwal')">Jadwal Poli &amp; Dokter</button>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-page="posyandu" onclick="showPage('posyandu', 'jadwal-pos')">Posyandu &amp; UKM ▾</button>
+          <div class="dropdown-menu">
+            <button type="button" class="dropdown-item" onclick="showPage('posyandu', 'jadwal-pos')">Jadwal Posyandu 7 Desa</button>
+            <button type="button" class="dropdown-item" onclick="showPage('posyandu', 'program-ukm')">Program Gizi, Imunisasi &amp; P2P</button>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-page="informasi" onclick="showPage('informasi')">
+            Informasi Update <span class="badge-baru">Baru</span>
+          </button>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="nav-link" data-page="survei" onclick="showPage('survei')">Survei IKM &amp; Pengaduan</button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HALAMAN 1: BERANDA -->
+  <section id="page-beranda" class="page-section active" style="padding-top:0;">
+    <div class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-badge">PUSKESMAS BLUD • INTEGRASI LAYANAN PRIMER (ILP)</span>
+          <h2>Pelayanan Kesehatan Prima untuk Masyarakat <span>Kecamatan Purabaya</span></h2>
+          <div class="hero-ticker-box">
+            <span id="heroTicker">Mewujudkan Masyarakat Kecamatan Purabaya yang Sehat, Mandiri, dan Berkeadilan melalui Pelayanan Kesehatan Primer Bermutu.</span>
+          </div>
+          <div class="hero-btns">
+            <button type="button" class="btn-emas" onclick="showPage('layanan', 'jadwal')">Lihat Jadwal Poli &amp; Dokter</button>
+            <button type="button" class="btn-outline-light" onclick="showPage('informasi')">Informasi Update Terbaru</button>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <h3>Data Wilayah &amp; Capaian Layanan</h3>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <div class="stat-num">7 Desa</div>
+              <div class="stat-lbl">Wilayah Binaan Kecamatan Purabaya</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">48 Posyandu</div>
+              <div class="stat-lbl">Posyandu Siklus Hidup Aktif</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">24 Jam</div>
+              <div class="stat-lbl">Siaga UGD &amp; Persalinan PONED</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">90,45</div>
+              <div class="stat-lbl">Indeks Kepuasan Masyarakat (Sangat Baik)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top:36px;">
+      <div class="section-title" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+        <div>
+          <h2>Informasi Update Terkini</h2>
+          <p>Pengumuman resmi, jadwal posyandu, dan edukasi kesehatan masyarakat Purabaya</p>
+        </div>
+        <button type="button" class="btn-primary" onclick="showPage('informasi')">Semua Informasi Update →</button>
+      </div>
+
+      <div class="grid-3">
+        {% for item in updates|slice:":3" %}
+        <article class="card">
+          <span class="badge-cat">{{ item.kategori }}</span>
+          <div style="font-size:12px;color:#64748b;margin-bottom:6px;">{{ item.tanggal_publikasi|date:"d M Y" }}</div>
+          <h3>{{ item.judul }}</h3>
+          <p style="font-size:13px;color:#475569;margin-bottom:14px;">{{ item.ringkasan }}</p>
+          <button type="button" class="btn-primary" onclick="bacaDetailUpdate({{ item.id }})">Baca Selengkapnya</button>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- HALAMAN 2: PROFIL PUSKESMAS -->
+  <section id="page-profil" class="page-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Profil UPTD Puskesmas Purabaya</h2>
+        <p>Dinas Kesehatan Kabupaten Sukabumi • Jl. Raya Purabaya Km. 39</p>
+      </div>
+
+      <div class="subtabs">
+        <button type="button" class="subtab-btn active" data-sub="visimisi" onclick="switchSubTab('profil', 'visimisi')">Visi, Misi &amp; Tata Nilai</button>
+        <button type="button" class="subtab-btn" data-sub="ilp" onclick="switchSubTab('profil', 'ilp')">Struktur Klaster ILP</button>
+        <button type="button" class="subtab-btn" data-sub="wilayah" onclick="switchSubTab('profil', 'wilayah')">Wilayah Kerja 7 Desa</button>
+        <button type="button" class="subtab-btn" data-sub="maklumat" onclick="switchSubTab('profil', 'maklumat')">Maklumat Pelayanan</button>
+      </div>
+
+      <div id="sub-visimisi" class="subtab-panel">
+        <div class="grid-2">
+          <div class="card">
+            <h3>Visi &amp; Misi Pelayanan</h3>
+            <p style="margin-bottom:10px;"><strong>Visi:</strong> Terwujudnya Kecamatan Purabaya yang Sehat dan Mandiri di Bidang Kesehatan.</p>
+            <ul style="padding-left:18px;font-size:14px;color:#334155;">
+              <li>Meningkatkan Pelayanan Kesehatan yang bermutu dan professional.</li>
+              <li>Meningkatkan Sumber Daya Manusia yang religious dan mandiri.</li>
+              <li>Mewujudkan Tata Kelola Puskesmas Yang bersih dan Profesional.</li>
+              <li>Meningkatkan Kualitas Pelayanan Kesehatan di wilayah kerja puskesmas purabaya melalui pemberdayaan masyarakat dan kerjasama lintas sektoral.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Tata Nilai: SOMEAH</h3>
+            <ul style="padding-left:18px;font-size:14px;color:#334155;">
+              <li><strong>S - Santun:</strong> Melaksanakan tugas dan tanggung jawab dalam melayani masyarakat dengan ramah dan sopan.</li>
+              <li><strong>O - Objektif:</strong> Melaksanakan Tugas tanpa membedakan ras golongan dan Agama.</li>
+              <li><strong>M - Mandiri:</strong> Puskesmas Purabaya dalam melaksanakan tugas tidak tergantung pada pihak lain.</li>
+              <li><strong>E - Edukatif:</strong> Puskesmas Purabaya sebagai pemberi infomasi Kesehatan di wilayah Kecamatan Purabaya.</li>
+              <li><strong>A - Aman:</strong> Melaksanakan tugas dengan prinsip aman bagi petugas dan aman bagi pasien.</li>
+              <li><strong>H - Harmonis:</strong> Melaksanakan tugas Lintas Profesi, Program, dan Lintas Sektor dengan kerjsama yang harmonis.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="sub-ilp" class="subtab-panel" style="display:none;">
+        <div class="grid-2">
+          <div class="card">
+            <h3>Klaster 1: Manajemen Puskesmas</h3>
+            <p style="font-size:14px;color:#475569;">Mengelola ketatausahaan, perencanaan (PTP, RUK, RPK), manajemen SDM, keuangan BLUD, sistem informasi puskesmas, serta manajemen mutu dan keselamatan pasien.</p>
+          </div>
+          <div class="card">
+            <h3>Klaster 2: Kesehatan Ibu, Anak &amp; Remaja</h3>
+            <p style="font-size:14px;color:#475569;">Pelayanan antenatal terpadu (ANC), persalinan PONED, neonatal, imunisasi bayi/balita, pemantauan tumbuh kembang, serta UKS dan pelayanan kesehatan peduli remaja (PKPR).</p>
+          </div>
+          <div class="card">
+            <h3>Klaster 3: Kesehatan Usia Dewasa &amp; Lansia</h3>
+            <p style="font-size:14px;color:#475569;">Skrining dan tata laksana Penyakit Tidak Menular (Hipertensi, Diabetes Melitus), kesehatan kerja, calon pengantin, serta pelayanan santun lanjut usia.</p>
+          </div>
+          <div class="card">
+            <h3>Klaster 4: Penanggulangan Penyakit Menular</h3>
+            <p style="font-size:14px;color:#475569;">Surveilans epidemiologi, pencegahan dan pengendalian TB Paru, HIV/AIDS, DBD, diare, serta penyehatan lingkungan pemukiman di 7 desa.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="sub-wilayah" class="subtab-panel" style="display:none;">
+        <div class="card">
+          <h3>Wilayah Kerja 7 Desa Kecamatan Purabaya</h3>
+          <p style="font-size:14px;color:#475569;margin-bottom:14px;">UPTD Puskesmas Purabaya membina 7 desa dengan dukungan Puskesmas Pembantu (Pustu), Poskesdes, Bidan Desa, dan 48 Posyandu aktif:</p>
+          <div class="grid-3">
+            {% for desa in posyandu_list %}
+            <div style="border:1px solid #e2e8f0;border-radius:12px;padding:14px;background:#f0fdfa;">
+              <strong style="color:#042f2e;">{{ desa.nama_desa }}</strong>
+              <div style="font-size:13px;color:#0f766e;">{{ desa.nama_posyandu }}</div>
+              <div style="font-size:12px;color:#475569;margin-top:4px;">Bidan Desa: {{ desa.bidan_desa }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div id="sub-maklumat" class="subtab-panel" style="display:none;">
+        <div class="card" style="border-left:5px solid #f59e0b;">
+          <h3>Maklumat Pelayanan UPTD Puskesmas Purabaya</h3>
+          <p style="font-size:15px;font-weight:600;color:#1e293b;">"Dengan ini kami seluruh jajaran UPTD Puskesmas Purabaya menyatakan sanggup menyelenggarakan pelayanan kesehatan sesuai standar pelayanan yang telah ditetapkan, memberikan pelayanan secara cepat, tepat, ramah, dan transparan, serta apabila tidak menepati janji ini kami siap menerima sanksi sesuai peraturan perundang-undangan yang berlaku."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HALAMAN 3: LAYANAN KESEHATAN -->
+  <section id="page-layanan" class="page-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Layanan Kesehatan Terpadu</h2>
+        <p>Pelayanan klinis rawat jalan, kegawatdaruratan 24 jam, dan penunjang diagnostik</p>
+      </div>
+
+      <div class="subtabs">
+        <button type="button" class="subtab-btn active" data-sub="klaster" onclick="switchSubTab('layanan', 'klaster')">Pelayanan Klaster 1 - 4</button>
+        <button type="button" class="subtab-btn" data-sub="ugd" onclick="switchSubTab('layanan', 'ugd')">UGD 24 Jam &amp; PONED</button>
+        <button type="button" class="subtab-btn" data-sub="jadwal" onclick="switchSubTab('layanan', 'jadwal')">Jadwal Poli &amp; Dokter</button>
+      </div>
+
+      <div id="sub-klaster" class="subtab-panel">
+        <div class="grid-3">
+          <div class="card">
+            <span class="badge-cat">Klaster 2</span>
+            <h3>KIA, KB &amp; Imunisasi</h3>
+            <p style="font-size:13px;color:#475569;">Pemeriksaan kehamilan USG dasar, imunisasi dasar lengkap, pemantauan gizi balita, serta pelayanan KB.</p>
+          </div>
+          <div class="card">
+            <span class="badge-cat">Klaster 3</span>
+            <h3>Poli Umum &amp; Lansia</h3>
+            <p style="font-size:13px;color:#475569;">Pemeriksaan medis umum, pengelolaan penyakit kronis (Prolanis), dan skrining kesehatan usia produktif.</p>
+          </div>
+          <div class="card">
+            <span class="badge-cat">Lintas Klaster</span>
+            <h3>Gigi, Farmasi &amp; Laboratorium</h3>
+            <p style="font-size:13px;color:#475569;">Perawatan gigi &amp; mulut, pemeriksaan darah lengkap, urine, sputum TB, dan pelayanan obat rasional.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="sub-ugd" class="subtab-panel" style="display:none;">
+        <div class="card">
+          <h3>Unit Gawat Darurat (UGD) 24 Jam &amp; Persalinan PONED</h3>
+          <p style="font-size:14px;color:#334155;margin-bottom:12px;">Melayani penanganan kegawatdaruratan medis, kecelakaan lalu lintas, observasi pasien akut, persalinan normal maupun komplikasi obstetri neonatal dasar (PONED), serta ambulans rujukan terpadu ke RSUD Kabupaten Sukabumi.</p>
+          <div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:12px;font-size:13px;">
+            <strong>Nomor Darurat UGD 24 Jam:</strong> (0266) 341-119 • Siaga 7 Hari Seminggu
+          </div>
+        </div>
+      </div>
+
+      <div id="sub-jadwal" class="subtab-panel" style="display:none;">
+        <div class="table-wrap">
+          <table class="jadwal-table">
+            <thead>
+              <tr>
+                <th>Unit Poli / Klaster</th>
+                <th>Hari Layanan</th>
+                <th>Jam Pelayanan</th>
+                <th>Tenaga Medis / Dokter</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for p in jadwal_poli %}
+              <tr>
+                <td><strong>{{ p.nama_poli }}</strong></td>
+                <td>{{ p.hari_layanan }}</td>
+                <td>{{ p.jam_layanan }}</td>
+                <td>{{ p.nama_dokter }}</td>
+                <td><span class="badge-cat" style="margin:0;">{{ p.status }}</span></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HALAMAN 4: POSYANDU & UKM -->
+  <section id="page-posyandu" class="page-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Posyandu &amp; Upaya Kesehatan Masyarakat (UKM)</h2>
+        <p>Jadwal kegiatan luar gedung dan pemberdayaan kader di 7 desa wilayah kerja</p>
+      </div>
+
+      <div class="subtabs">
+        <button type="button" class="subtab-btn active" data-sub="jadwal-pos" onclick="switchSubTab('posyandu', 'jadwal-pos')">Jadwal Posyandu 7 Desa</button>
+        <button type="button" class="subtab-btn" data-sub="program-ukm" onclick="switchSubTab('posyandu', 'program-ukm')">Program Gizi, Imunisasi &amp; P2P</button>
+      </div>
+
+      <div id="sub-jadwal-pos" class="subtab-panel">
+        <div class="table-wrap">
+          <table class="jadwal-table">
+            <thead>
+              <tr>
+                <th>Desa</th>
+                <th>Posyandu</th>
+                <th>Jadwal Pelaksanaan</th>
+                <th>Jumlah Kader</th>
+                <th>Bidan Desa Pembina</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for pos in posyandu_list %}
+              <tr>
+                <td><strong>{{ pos.nama_desa }}</strong></td>
+                <td>{{ pos.nama_posyandu }}</td>
+                <td>{{ pos.jadwal_minggu }}</td>
+                <td>{{ pos.jumlah_kader }} Kader</td>
+                <td>{{ pos.bidan_desa }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="sub-program-ukm" class="subtab-panel" style="display:none;">
+        <div class="grid-3">
+          <div class="card">
+            <h3>Percepatan Penurunan Stunting</h3>
+            <p style="font-size:13px;color:#475569;">Pemberian Makanan Tambahan (PMT) berbasis pangan lokal bagi balita gizi kurang dan ibu hamil KEK di seluruh desa.</p>
+          </div>
+          <div class="card">
+            <h3>Bulan Imunisasi Anak Sekolah (BIAS)</h3>
+            <p style="font-size:13px;color:#475569;">Penjaringan kesehatan berkala dan imunisasi anak usia sekolah dasar bersama tim UKS.</p>
+          </div>
+          <div class="card">
+            <h3>Posbindu PTM &amp; Kesehatan Jiwa</h3>
+            <p style="font-size:13px;color:#475569;">Deteksi dini faktor risiko penyakit tidak menular dan pendampingan kesehatan jiwa berbasis keluarga.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HALAMAN 5: INFORMASI UPDATE -->
+  <section id="page-informasi" class="page-section">
+    <div class="container">
+      <div class="section-title" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h2>Informasi Update &amp; Berita Kesehatan</h2>
+          <p>Publikasi pengumuman, kegiatan lapangan, dan edukasi kesehatan resmi UPTD Puskesmas Purabaya</p>
+        </div>
+        <button type="button" class="btn-emas" onclick="document.getElementById('modalTambahUpdate').classList.add('show')">+ Tambah Informasi Update</button>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;">
+        <select id="filterKategoriUpdate" class="form-control" style="max-width:220px;">
+          <option value="Semua">Semua Kategori</option>
+          <option value="Pengumuman">Pengumuman</option>
+          <option value="Berita Kegiatan">Berita Kegiatan</option>
+          <option value="Edukasi Kesehatan">Edukasi Kesehatan</option>
+        </select>
+        <input type="text" id="searchUpdateInput" class="form-control" style="max-width:340px;" placeholder="Cari judul atau kata kunci informasi...">
+      </div>
+
+      <div id="updatesGrid" class="grid-3"></div>
+    </div>
+  </section>
+
+  <!-- HALAMAN 6: SURVEI IKM & PENGADUAN -->
+  <section id="page-survei" class="page-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Survei Kepuasan Masyarakat (IKM) &amp; Pengaduan Warga</h2>
+        <p>Sampaikan penilaian layanan, saran, maupun pengaduan secara langsung kepada tim manajemen mutu</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Formulir Survei / Pengaduan</h3>
+          <form id="formSurvei">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="svNama">Nama Lengkap Warga *</label>
+              <input type="text" id="svNama" class="form-control" placeholder="Nama Anda" required>
+            </div>
+            <div class="form-group">
+              <label for="svDesa">Desa Asal</label>
+              <select id="svDesa" class="form-control">
+                <option value="Purabaya">Desa Purabaya</option>
+                <option value="Neglasari">Desa Neglasari</option>
+                <option value="Pagelaran">Desa Pagelaran</option>
+                <option value="Citamiang">Desa Citamiang</option>
+                <option value="Cicukang">Desa Cicukang</option>
+                <option value="Cimerang">Desa Cimerang</option>
+                <option value="Margaluyu">Desa Margaluyu</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="svHp">Nomor WhatsApp (Opsional)</label>
+              <input type="tel" id="svHp" class="form-control" placeholder="0857xxxxxxxx">
+            </div>
+            <div class="form-group">
+              <label for="svJenis">Jenis Masukan</label>
+              <select id="svJenis" class="form-control">
+                <option value="Survei IKM">Survei Kepuasan Masyarakat (IKM)</option>
+                <option value="Pengaduan">Pengaduan Layanan</option>
+                <option value="Saran">Saran &amp; Apresiasi</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="svUnit">Unit Layanan yang Dikunjungi</label>
+              <select id="svUnit" class="form-control">
+                <option value="Pendaftaran & Rekam Medis">Pendaftaran &amp; Rekam Medis</option>
+                <option value="Klaster 2 - KIA & Anak">Klaster 2 - KIA &amp; Anak</option>
+                <option value="Klaster 3 - Poli Umum & Lansia">Klaster 3 - Poli Umum &amp; Lansia</option>
+                <option value="Poli Gigi & Mulut">Poli Gigi &amp; Mulut</option>
+                <option value="UGD 24 Jam & PONED">UGD 24 Jam &amp; PONED</option>
+                <option value="Farmasi & Laboratorium">Farmasi &amp; Laboratorium</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="svPenilaian">Tingkat Kepuasan Pelayanan</label>
+              <select id="svPenilaian" class="form-control">
+                <option value="Sangat Puas">Sangat Puas (Nilai 4)</option>
+                <option value="Puas">Puas (Nilai 3)</option>
+                <option value="Cukup Puas">Cukup Puas (Nilai 2)</option>
+                <option value="Tidak Puas">Tidak Puas (Nilai 1)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="svPesan">Uraian Saran / Pengaduan *</label>
+              <textarea id="svPesan" class="form-control" rows="3" placeholder="Tuliskan pengalaman, saran, atau pengaduan Anda..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;">Kirim Survei / Pengaduan</button>
+          </form>
+        </div>
+
+        <div>
+          <div class="card" style="margin-bottom:18px;background:linear-gradient(135deg,#042f2e,#115e59);color:#fff;">
+            <h3 style="color:#fbbf24;">Rekapitulasi Indeks Kepuasan Masyarakat</h3>
+            <div style="font-size:32px;font-weight:800;color:#fbbf24;">89,45 <span style="font-size:14px;color:#ccfbf1;">(Kategori A - Sangat Baik)</span></div>
+            <p style="font-size:13px;color:#ccfbf1;margin-top:6px;">Berdasarkan {{ total_responden }} responden masyarakat Kecamatan Purabaya.</p>
+          </div>
+
+          <h3 style="font-size:16px;margin-bottom:10px;color:#042f2e;">Masukan &amp; Survei Terbaru Warga</h3>
+          <div id="daftarSurveiTerbaru">
+            {% for sv in survei_terbaru %}
+            <div class="card" style="margin-bottom:10px;padding:14px;">
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:#0f766e;font-weight:700;">
+                <span>{{ sv.nama_warga }} ({{ sv.desa_asal }})</span>
+                <span>{{ sv.jenis }} • {{ sv.penilaian }}</span>
+              </div>
+              <p style="font-size:13px;color:#334155;margin-top:6px;">"{{ sv.pesan }}"</p>
+            </div>
+            {% empty %}
+            <div class="card" style="padding:14px;font-size:13px;color:#64748b;">Jadilah warga pertama yang mengisi survei kepuasan layanan hari ini.</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Baca Detail Informasi Update -->
+  <div class="modal-backdrop" id="modalDetailUpdate">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span id="modalMetaUpdate" style="font-size:12px;font-weight:700;color:#0f766e;"></span>
+        <button type="button" onclick="tutupModal('modalDetailUpdate')" style="border:none;background:#f1f5f9;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;">✕</button>
+      </div>
+      <h3 id="modalJudulUpdate" style="font-size:20px;color:#042f2e;margin-bottom:12px;"></h3>
+      <p id="modalIsiUpdate" style="font-size:14px;color:#334155;line-height:1.7;white-space:pre-line;"></p>
+    </div>
+  </div>
+
+  <!-- Modal Tambah Informasi Update -->
+  <div class="modal-backdrop" id="modalTambahUpdate">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <h3 style="color:#042f2e;">Publikasikan Informasi Update Baru</h3>
+        <button type="button" onclick="tutupModal('modalTambahUpdate')" style="border:none;background:#f1f5f9;padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;">✕</button>
+      </div>
+      <form id="formTambahUpdate">
+        {% csrf_token %}
+        <div class="form-group">
+          <label>Judul Informasi *</label>
+          <input type="text" id="upJudul" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Kategori</label>
+          <select id="upKategori" class="form-control">
+            <option value="Pengumuman">Pengumuman</option>
+            <option value="Berita Kegiatan">Berita Kegiatan</option>
+            <option value="Edukasi Kesehatan">Edukasi Kesehatan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ringkasan Singkat *</label>
+          <textarea id="upRingkasan" class="form-control" rows="2" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Isi Lengkap Artikel</label>
+          <textarea id="upIsi" class="form-control" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Penulis / Unit</label>
+          <input type="text" id="upPenulis" class="form-control" value="Tim Promkes UPTD Puskesmas Purabaya">
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Simpan &amp; Publikasikan</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <strong>UPTD Puskesmas Purabaya - Dinas Kesehatan Kabupaten Sukabumi</strong><br>
+      Jl. Raya Purabaya Km. 39, Kecamatan Purabaya, Kabupaten Sukabumi, Jawa Barat • Telp UGD 24 Jam: (0266) 341-119
+    </div>
+  </footer>
+
+  <script>
+    const UPDATES_DATA = {{ updates_json|safe }};
+  </script>
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
