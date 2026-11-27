@@ -34,7 +34,7 @@ body {
 
 body {
   font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
-  background-color: #e0e2e5;
+  background-color: #e1e4e8;
   color: #0f172a;
   line-height: 1.6;
 }
@@ -443,7 +443,7 @@ body {
 
 .section-title p {
   font-size: 14px;
-  color: #64748b;
+  color: #000000;
 }
 
 /* Cards & Grids */
