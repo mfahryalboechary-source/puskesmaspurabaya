@@ -5,6 +5,50 @@ from django.views.decorators.http import require_POST
 from .models import InformasiUpdate, JadwalPoli, JadwalPosyanduDesa, SurveiPengaduan
 
 
+BOBOT_PENILAIAN = {
+    'Sangat Puas': 4,
+    'Puas': 3,
+    'Cukup Puas': 2,
+    'Tidak Puas': 1,
+}
+
+
+def hitung_ikm_otomatis():
+    # Baseline awal (248 responden dengan skor 89,45 -> rata-rata 3,578 dari skala 4)
+    baseline_responden = 248
+    baseline_total_poin = baseline_responden * 3.578
+
+    semua_survei = SurveiPengaduan.objects.all()
+    total_poin_baru = sum(BOBOT_PENILAIAN.get(s.penilaian, 3) for s in semua_survei)
+    total_responden = baseline_responden + semua_survei.count()
+
+    rata_rata_skala_4 = (baseline_total_poin + total_poin_baru) / total_responden
+    nilai_ikm = round((rata_rata_skala_4 / 4) * 100, 2)
+
+    # Format koma ala Indonesia (misal: 89,45)
+    nilai_ikm_str = f"{nilai_ikm:.2f}".replace('.', ',')
+
+    if nilai_ikm >= 88.31:
+        kategori_mutu = 'Kategori A - Sangat Baik'
+        predikat_singkat = 'Sangat Baik'
+    elif nilai_ikm >= 76.61:
+        kategori_mutu = 'Kategori B - Baik'
+        predikat_singkat = 'Baik'
+    elif nilai_ikm >= 65.00:
+        kategori_mutu = 'Kategori C - Kurang Baik'
+        predikat_singkat = 'Kurang Baik'
+    else:
+        kategori_mutu = 'Kategori D - Tidak Baik'
+        predikat_singkat = 'Tidak Baik'
+
+    return {
+        'total_responden': total_responden,
+        'nilai_ikm_str': nilai_ikm_str,
+        'kategori_mutu': kategori_mutu,
+        'predikat_singkat': predikat_singkat,
+    }
+
+
 def seed_initial_data():
     if not InformasiUpdate.objects.exists():
         InformasiUpdate.objects.bulk_create([
@@ -59,6 +103,7 @@ def beranda(request):
     jadwal_poli = JadwalPoli.objects.all()
     posyandu_list = JadwalPosyanduDesa.objects.all()
     survei_terbaru = SurveiPengaduan.objects.all()[:6]
+    ikm_data = hitung_ikm_otomatis()
 
     updates_json = json.dumps([
         {
@@ -79,7 +124,10 @@ def beranda(request):
         'jadwal_poli': jadwal_poli,
         'posyandu_list': posyandu_list,
         'survei_terbaru': survei_terbaru,
-        'total_responden': 248 + SurveiPengaduan.objects.count(),
+        'total_responden': ikm_data['total_responden'],
+        'nilai_ikm_str': ikm_data['nilai_ikm_str'],
+        'kategori_mutu': ikm_data['kategori_mutu'],
+        'predikat_singkat': ikm_data['predikat_singkat'],
     }
     return render(request, 'puskesmas/index.html', context)
 
@@ -144,6 +192,7 @@ def api_kirim_survei(request):
             penilaian=penilaian,
             pesan=pesan,
         )
+        ikm_data = hitung_ikm_otomatis()
         return JsonResponse({
             'ok': True,
             'item': {
@@ -154,7 +203,8 @@ def api_kirim_survei(request):
                 'penilaian': obj.penilaian,
                 'pesan': obj.pesan,
                 'tanggal': obj.dibuat_pada.strftime('%d %b %Y'),
-            }
+            },
+            'ikm': ikm_data,
         })
     except Exception as e:
         return JsonResponse({'ok': False, 'message': str(e)}, status=400)

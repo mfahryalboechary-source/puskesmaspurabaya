@@ -126,8 +126,8 @@
               <div class="stat-lbl">Siaga UGD &amp; Persalinan PONED</div>
             </div>
             <div class="stat-card">
-              <div class="stat-num">90,45</div>
-              <div class="stat-lbl">Indeks Kepuasan Masyarakat (Sangat Baik)</div>
+              <div class="stat-num" id="berandaIkmScore">{{ nilai_ikm_str }}</div>
+              <div class="stat-lbl" id="berandaIkmLabel">Indeks Kepuasan Masyarakat ({{ predikat_singkat }})</div>
             </div>
           </div>
         </div>
@@ -473,8 +473,11 @@
         <div>
           <div class="card" style="margin-bottom:18px;background:linear-gradient(135deg,#042f2e,#115e59);color:#fff;">
             <h3 style="color:#fbbf24;">Rekapitulasi Indeks Kepuasan Masyarakat</h3>
-            <div style="font-size:32px;font-weight:800;color:#fbbf24;">89,45 <span style="font-size:14px;color:#ccfbf1;">(Kategori A - Sangat Baik)</span></div>
-            <p style="font-size:13px;color:#ccfbf1;margin-top:6px;">Berdasarkan {{ total_responden }} responden masyarakat Kecamatan Purabaya.</p>
+            <div style="font-size:32px;font-weight:800;color:#fbbf24;">
+              <span id="surveiIkmScore">{{ nilai_ikm_str }}</span>
+              <span id="surveiIkmKategori" style="font-size:14px;color:#ccfbf1;">({{ kategori_mutu }})</span>
+            </div>
+            <p style="font-size:13px;color:#ccfbf1;margin-top:6px;">Berdasarkan <span id="surveiTotalResponden">{{ total_responden }}</span> responden masyarakat Kecamatan Purabaya.</p>
           </div>
 
           <h3 style="font-size:16px;margin-bottom:10px;color:#042f2e;">Masukan &amp; Survei Terbaru Warga</h3>
