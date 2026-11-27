@@ -133,8 +133,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex: 0 1 auto;
-  min-width: 0;
+  flex-shrink: 0;
   cursor: pointer;
 }
 
@@ -162,9 +161,10 @@ body {
 }
 
 .brand-text {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  align-items: stretch;
+  width: fit-content;
+  max-width: 100%;
   min-width: 0;
 }
 
@@ -173,6 +173,7 @@ body {
   font-weight: 800;
   color: var(--tosca-950);
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .brand-text .sub-dinkes {
@@ -180,19 +181,20 @@ body {
   font-weight: 600;
   color: #0f766e;
   margin-bottom: 5px;
+  white-space: nowrap;
 }
 
-/* Kolom Kuning Header: Rata & Proporsional dengan Teks di Atasnya */
+/* Kolom Kuning: Lebar Pas Sejajar Akhir Teks di Atasnya */
 .header-ticker-box {
   display: flex;
   align-items: center;
   width: 100%;
-  min-width: 260px;
+  min-width: 100%;
   max-width: 100%;
   background: #fffbeb;
   border: 1px solid #fcd34d;
-  border-radius: 8px;
-  padding: 4px 10px;
+  border-radius: 6px;
+  padding: 3px 9px;
   font-size: 11px;
   font-weight: 700;
   line-height: 1.25;
@@ -701,7 +703,7 @@ footer {
   }
 
   .brand-wrap {
-    width: 100% !important;
+    width: auto !important;
     max-width: 100% !important;
     gap: 10px !important;
   }
@@ -712,7 +714,8 @@ footer {
   }
 
   .brand-text {
-    flex: 1 1 auto !important;
+    width: fit-content !important;
+    max-width: calc(100vw - 96px) !important;
     min-width: 0 !important;
   }
 
@@ -728,7 +731,7 @@ footer {
 
   .header-ticker-box {
     width: 100% !important;
-    min-width: 0 !important;
+    min-width: 100% !important;
     max-width: 100% !important;
     font-size: 10px !important;
     padding: 3px 8px !important;
