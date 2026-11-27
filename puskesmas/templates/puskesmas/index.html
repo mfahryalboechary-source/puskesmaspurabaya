@@ -41,7 +41,7 @@
   <header class="header-main">
     <div class="container header-inner">
       <div class="brand-wrap" onclick="showPage('beranda')">
-        <img class="brand-logo" src="/static/img/logo-purabaya.png" alt="Logo Puskesmas Purabaya">
+        <img class="brand-logo" src="{% static 'img/logo-purabaya.png' %}" alt="Logo Puskesmas Purabaya">
         <div class="brand-text">
           <h1>UPTD Puskesmas Purabaya</h1>
           <div class="sub-dinkes">Dinas Kesehatan Kabupaten Sukabumi</div>
@@ -293,7 +293,8 @@
           <table class="jadwal-table">
             <thead>
               <tr>
-                <th>Unit Poli / Klaster</th>
+                <th>Unit Poli</th>
+                <th>Klaster</th>
                 <th>Hari Layanan</th>
                 <th>Jam Pelayanan</th>
                 <th>Tenaga Medis / Dokter</th>
@@ -304,6 +305,7 @@
               {% for p in jadwal_poli %}
               <tr>
                 <td><strong>{{ p.nama_poli }}</strong></td>
+                <td>{{ p.klaster }}</td>
                 <td>{{ p.hari_layanan }}</td>
                 <td>{{ p.jam_layanan }}</td>
                 <td>{{ p.nama_dokter }}</td>

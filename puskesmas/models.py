@@ -26,8 +26,14 @@ class InformasiUpdate(models.Model):
 
 
 class JadwalPoli(models.Model):
+    KLASTER_CHOICES = [
+        ('Klaster 1', 'Klaster 1'),
+        ('Klaster 2', 'Klaster 2'),
+        ('Klaster 3', 'Klaster 3'),
+    ]
+
     nama_poli = models.CharField(max_length=120)
-    klaster = models.CharField(max_length=100, default='Klaster 2 / 3')
+    klaster = models.CharField(max_length=30, choices=KLASTER_CHOICES, default='Klaster 2')
     hari_layanan = models.CharField(max_length=100, default='Senin - Sabtu')
     jam_layanan = models.CharField(max_length=100, default='08.00 - 14.00 WIB')
     nama_dokter = models.CharField(max_length=150)
@@ -40,7 +46,7 @@ class JadwalPoli(models.Model):
         verbose_name_plural = 'Jadwal Poli & Dokter'
 
     def __str__(self):
-        return f"{self.nama_poli} - {self.nama_dokter}"
+        return f"{self.nama_poli} ({self.klaster}) - {self.nama_dokter}"
 
 
 class JadwalPosyanduDesa(models.Model):
