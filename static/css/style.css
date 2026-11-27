@@ -18,10 +18,18 @@
   --table-row-hover: #ccfbf1;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -58,6 +66,7 @@ body {
 .sosmed-links {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -72,12 +81,14 @@ body {
   color: #fbbf24;
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
   transition: all 0.3s ease;
 }
 
 .sosmed-links a i {
   font-size: 19px;
   color: #fbbf24;
+  flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
@@ -153,6 +164,7 @@ body {
 .brand-text {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .brand-text h1 {
@@ -160,7 +172,6 @@ body {
   font-weight: 800;
   color: var(--tosca-950);
   line-height: 1.2;
-  white-space: nowrap;
 }
 
 .brand-text .sub-dinkes {
@@ -168,7 +179,6 @@ body {
   font-weight: 600;
   color: #0f766e;
   margin-bottom: 4px;
-  white-space: nowrap;
 }
 
 /* Kontainer Teks Bergerak Header (Lebar & Utuh) */
@@ -247,7 +257,8 @@ body {
   z-index: 60;
 }
 
-.nav-item:hover .dropdown-menu {
+.nav-item:hover .dropdown-menu,
+.nav-item:focus-within .dropdown-menu {
   display: block;
 }
 
@@ -502,13 +513,16 @@ body {
 
 /* Tabel Jadwal */
 .table-wrap {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: 14px;
   border: 1px solid #cbd5e1;
 }
 
 table.jadwal-table {
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
   font-size: 13px;
 }
@@ -605,20 +619,107 @@ footer {
   margin-top: 40px;
 }
 
+/* Tablet & Layar Menengah */
 @media (max-width: 1120px) {
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
+
   .nav-menu {
     margin-left: 0;
     flex-wrap: wrap;
+    gap: 4px;
   }
+
   .hero-grid,
   .grid-3,
   .grid-2 {
     grid-template-columns: 1fr;
+  }
+}
+
+/* HP (<= 768px): Sosmed ringkas & selaras dengan tampilan desktop */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .topbar {
+    padding: 8px 0;
+  }
+
+  .topbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 11px;
+  }
+
+  .sosmed-links {
+    gap: 6px;
+    width: 100%;
+  }
+
+  .sosmed-links a {
+    padding: 5px 8px;
+    font-size: 11px;
+    gap: 5px;
+    border-radius: 7px;
+  }
+
+  .sosmed-links a i {
+    font-size: 13px;
+  }
+
+  .sosmed-links a .fa-user-shield {
+    margin-right: 1px;
+  }
+
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-text h1 {
+    font-size: 15px;
+  }
+
+  .header-ticker-box {
+    width: 100%;
+    max-width: 290px;
+  }
+
+  .nav-link {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .dropdown-menu {
+    min-width: 210px;
+  }
+
+  .hero {
+    padding: 32px 0 38px;
+  }
+
+  .hero-panel,
+  .card {
+    padding: 16px;
+  }
+}
+
+/* HP Sangat Kecil (<= 400px) */
+@media (max-width: 400px) {
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sosmed-links a {
+    padding: 4px 7px;
+    font-size: 10.5px;
   }
 }
 
